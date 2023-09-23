@@ -1,0 +1,28 @@
+2023-09-23 02:56:26,078 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Current SDK version is 0.15.11
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Configure stats pid to 2491
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Loading settings from /root/.config/wandb/settings
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Loading settings from /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/settings
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-09-23 02:56:26,079 INFO    MainThread:2491 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main_pretrain.py', 'program_abspath': '/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py', 'program': '/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py'}
+2023-09-23 02:56:26,080 INFO    MainThread:2491 [wandb_init.py:_log_setup():528] Logging user logs to /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/run-20230923_025626-3xvt01gq/logs/debug.log
+2023-09-23 02:56:26,080 INFO    MainThread:2491 [wandb_init.py:_log_setup():529] Logging internal logs to /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/run-20230923_025626-3xvt01gq/logs/debug-internal.log
+2023-09-23 02:56:26,080 INFO    MainThread:2491 [wandb_init.py:init():568] calling init triggers
+2023-09-23 02:56:26,080 INFO    MainThread:2491 [wandb_init.py:init():575] wandb.init called with sweep_config: {}
+config: {}
+2023-09-23 02:56:26,081 INFO    MainThread:2491 [wandb_init.py:init():618] starting backend
+2023-09-23 02:56:26,081 INFO    MainThread:2491 [wandb_init.py:init():622] setting up manager
+2023-09-23 02:56:26,088 INFO    MainThread:2491 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-09-23 02:56:26,091 INFO    MainThread:2491 [wandb_init.py:init():628] backend started and connected
+2023-09-23 02:56:26,104 INFO    MainThread:2491 [wandb_init.py:init():720] updated telemetry
+2023-09-23 02:56:28,593 INFO    MainThread:2491 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2023-09-23 02:56:28,976 INFO    MainThread:2491 [wandb_run.py:_on_init():2220] communicating current version
+2023-09-23 02:56:29,202 INFO    MainThread:2491 [wandb_run.py:_on_init():2229] got version response 
+2023-09-23 02:56:29,202 INFO    MainThread:2491 [wandb_init.py:init():804] starting run threads in backend
+2023-09-23 02:56:29,319 INFO    MainThread:2491 [wandb_run.py:_console_start():2199] atexit reg
+2023-09-23 02:56:29,319 INFO    MainThread:2491 [wandb_run.py:_redirect():2054] redirect: wrap_raw
+2023-09-23 02:56:29,320 INFO    MainThread:2491 [wandb_run.py:_redirect():2119] Wrapping output streams.
+2023-09-23 02:56:29,320 INFO    MainThread:2491 [wandb_run.py:_redirect():2144] Redirects installed.
+2023-09-23 02:56:29,322 INFO    MainThread:2491 [wandb_init.py:init():845] run started, returning control to user process
+2023-09-23 02:56:29,323 INFO    MainThread:2491 [wandb_run.py:_config_callback():1324] config_cb None None {'batch_size': 64, 'epochs': 10, 'accum_iter': 1, 'model': 'mae_vit_base_patch16', 'input_size': 224, 'mask_ratio': 0.75, 'norm_pix_loss': False, 'weight_decay': 0.05, 'lr': None, 'blr': 0.001, 'min_lr': 0.0, 'warmup_epochs': 40, 'data_path': './dataset/tiny-imagenet-200', 'output_dir': './output_dir', 'log_dir': './output_dir', 'device': 'cuda', 'seed': 0, 'resume': '', 'start_epoch': 0, 'num_workers': 10, 'pin_mem': True, 'world_size': 1, 'local_rank': -1, 'dist_on_itp': False, 'dist_url': 'env://', 'use_enc_repre': False}
+2023-09-23 03:06:01,677 INFO    MainThread:2491 [wandb_watch.py:watch():51] Watching

@@ -1,0 +1,115 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.12
+    cli_version: 0.15.11
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1695438806.591164
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 12
+      - 41
+      - 55
+      - 63
+      2:
+      - 1
+      - 2
+      - 3
+      - 12
+      - 41
+      - 55
+      - 63
+      3:
+      - 17
+      - 23
+      - 37
+      4: 3.10.12
+      5: 0.15.11
+      8:
+      - 5
+      13: linux-x86_64
+batch_size:
+  desc: null
+  value: 64
+epochs:
+  desc: null
+  value: 10
+accum_iter:
+  desc: null
+  value: 1
+model:
+  desc: null
+  value: mae_vit_base_patch16
+input_size:
+  desc: null
+  value: 224
+mask_ratio:
+  desc: null
+  value: 0.75
+norm_pix_loss:
+  desc: null
+  value: false
+weight_decay:
+  desc: null
+  value: 0.05
+lr:
+  desc: null
+  value: null
+blr:
+  desc: null
+  value: 0.001
+min_lr:
+  desc: null
+  value: 0.0
+warmup_epochs:
+  desc: null
+  value: 40
+data_path:
+  desc: null
+  value: ./dataset/tiny-imagenet-200
+output_dir:
+  desc: null
+  value: ./output_dir
+log_dir:
+  desc: null
+  value: ./output_dir
+device:
+  desc: null
+  value: cuda
+seed:
+  desc: null
+  value: 0
+resume:
+  desc: null
+  value: ''
+start_epoch:
+  desc: null
+  value: 0
+num_workers:
+  desc: null
+  value: 10
+pin_mem:
+  desc: null
+  value: true
+world_size:
+  desc: null
+  value: 1
+local_rank:
+  desc: null
+  value: -1
+dist_on_itp:
+  desc: null
+  value: false
+dist_url:
+  desc: null
+  value: env://
+use_enc_repre:
+  desc: null
+  value: false

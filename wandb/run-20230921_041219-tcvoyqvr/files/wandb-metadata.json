@@ -1,0 +1,63 @@
+{
+    "os": "Linux-5.15.120+-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2023-09-21T04:12:22.284141",
+    "startedAt": "2023-09-21T04:12:19.060707",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--epochs",
+        "10",
+        "--data_path",
+        "./dataset/tiny-imagenet-200"
+    ],
+    "state": "running",
+    "program": "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py",
+    "codePathLocal": "main_pretrain.py",
+    "codePath": "main_pretrain.py",
+    "git": {
+        "remote": "https://github.com/facebookresearch/mae.git",
+        "commit": "efb2a8062c206524e35e47d04501ed4f544c0ae8"
+    },
+    "email": null,
+    "root": "/content/drive/MyDrive/ITML/mae-rankme/mae",
+    "host": "2d62881436a7",
+    "username": "root",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 1,
+    "cpu_count_logical": 2,
+    "cpu_freq": {
+        "current": 2299.998,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2299.998,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2299.998,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 166.77415084838867,
+            "used": 26.293052673339844
+        }
+    },
+    "gpu": "Tesla T4",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Tesla T4",
+            "memory_total": 16106127360
+        }
+    ],
+    "memory": {
+        "total": 12.6783447265625
+    }
+}

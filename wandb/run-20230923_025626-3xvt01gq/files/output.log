@@ -1,0 +1,160 @@
+Not using distributed mode
+[02:56:29.326794] job dir: /content/drive/MyDrive/ITML/mae-rankme/mae
+[02:56:29.327230] Namespace(batch_size=64,
+epochs=10,
+accum_iter=1,
+model='mae_vit_base_patch16',
+input_size=224,
+mask_ratio=0.75,
+norm_pix_loss=False,
+weight_decay=0.05,
+lr=None,
+blr=0.001,
+min_lr=0.0,
+warmup_epochs=40,
+data_path='./dataset/tiny-imagenet-200',
+output_dir='./output_dir',
+log_dir='./output_dir',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+use_enc_repre=False,
+distributed=False)
+[03:05:59.573633] Dataset ImageFolder
+    Number of datapoints: 100000
+    Root location: ./dataset/tiny-imagenet-200/train
+    StandardTransform
+Transform: Compose(
+               RandomResizedCrop(size=(224, 224), scale=(0.2, 1.0), ratio=(0.75, 1.3333), interpolation=bicubic, antialias=warn)
+               RandomHorizontalFlip(p=0.5)
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+[03:05:59.574956] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7ff85f1bda50>
+/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py:560: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+[03:06:01.682687] Model = MaskedAutoencoderViT(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (blocks): ModuleList(
+    (0-11): 12 x Block(
+      (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=768, out_features=2304, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=768, out_features=768, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+  (decoder_embed): Linear(in_features=768, out_features=512, bias=True)
+  (decoder_blocks): ModuleList(
+    (0-7): 8 x Block(
+      (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=512, out_features=1536, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=512, out_features=512, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=512, out_features=2048, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=2048, out_features=512, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (decoder_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+  (decoder_pred): Linear(in_features=512, out_features=768, bias=True)
+)
+[03:06:01.683300] base lr: 1.00e-03
+[03:06:01.683741] actual lr: 2.50e-04
+[03:06:01.684141] accumulate grad iterations: 1
+[03:06:01.684442] effective batch size: 64
+[03:06:01.686495] AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.00025
+    maximize: False
+    weight_decay: 0.0
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.00025
+    maximize: False
+    weight_decay: 0.05
+)
+[03:06:01.687078] Start training for 10 epochs
+[03:06:01.689124] log_dir: ./output_dir
+[03:06:22.033055] Epoch: [0]  [   0/1562]  eta: 8:49:31  lr: 0.000000  loss: 2.3527 (2.3527)  time: 20.3403  data: 17.4572  max mem: 5840
+[03:06:51.139397] Epoch: [0]  [  20/1562]  eta: 1:00:30  lr: 0.000000  loss: 2.2127 (2.2488)  time: 1.4552  data: 0.9502  max mem: 6709
+[03:07:22.749582] Epoch: [0]  [  40/1562]  eta: 0:50:08  lr: 0.000000  loss: 2.2177 (2.2381)  time: 1.5804  data: 1.0681  max mem: 6709
+[03:07:53.941551] Epoch: [0]  [  60/1562]  eta: 0:46:03  lr: 0.000000  loss: 2.1366 (2.2157)  time: 1.5595  data: 1.0412  max mem: 6709
+[03:08:25.273558] Epoch: [0]  [  80/1562]  eta: 0:43:46  lr: 0.000000  loss: 2.0930 (2.1858)  time: 1.5665  data: 1.0324  max mem: 6709
+[03:08:55.572184] Epoch: [0]  [ 100/1562]  eta: 0:41:56  lr: 0.000000  loss: 2.0074 (2.1527)  time: 1.5148  data: 0.9791  max mem: 6709
+[03:09:27.571525] Epoch: [0]  [ 120/1562]  eta: 0:40:53  lr: 0.000000  loss: 1.9185 (2.1144)  time: 1.5999  data: 1.0529  max mem: 6709
+[03:09:58.763913] Epoch: [0]  [ 140/1562]  eta: 0:39:50  lr: 0.000001  loss: 1.7906 (2.0705)  time: 1.5595  data: 1.0081  max mem: 6709
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 633, in __next__
+    data = self._next_data()
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1328, in _next_data
+    idx, data = self._get_data()
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1284, in _get_data
+    success, data = self._try_get_data()
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1132, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/usr/lib/python3.10/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+  File "/usr/lib/python3.10/threading.py", line 324, in wait
+    gotit = waiter.acquire(True, timeout)
+KeyboardInterrupt
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 245, in <module>
+    main(args)
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 195, in main
+    train_stats = train_one_epoch(
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/engine_pretrain.py", line 72, in train_one_epoch
+    for data_iter_step, (samples, _) in enumerate(metric_logger.log_every(data_loader, print_freq, header)):
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/util/misc.py", line 147, in log_every
+    for obj in iterable:
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 629, in __next__
+    with torch.autograd.profiler.record_function(self._profile_name):
+  File "/usr/local/lib/python3.10/dist-packages/torch/autograd/profiler.py", line 507, in __exit__
+    torch.ops.profiler._record_function_exit._RecordFunction(record)
+  File "/usr/local/lib/python3.10/dist-packages/torch/_ops.py", line 286, in __call__
+    def __call__(self, *args, **kwargs):
+KeyboardInterrupt
+[03:10:08.894657] [03:10:08.895262] [03:10:08.895578] [03:10:08.895758] [03:10:08.895931] [03:10:08.896137] [03:10:08.896311] [03:10:08.896512] [03:10:08.896693] [03:10:08.896869] [03:10:08.897126] [03:10:08.897321] [03:10:08.897501] [03:10:08.897683] [03:10:08.897849] [03:10:08.898052] [03:10:08.898229] [03:10:08.898401]

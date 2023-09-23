@@ -1,0 +1,48 @@
+Not using distributed mode
+[03:13:29.844226] job dir: /content/drive/MyDrive/ITML/mae-rankme/mae
+[03:13:29.844805] Namespace(batch_size=64,
+epochs=10,
+accum_iter=1,
+model='mae_vit_base_patch16',
+input_size=224,
+mask_ratio=0.75,
+norm_pix_loss=False,
+weight_decay=0.05,
+lr=None,
+blr=0.001,
+min_lr=0.0,
+warmup_epochs=40,
+data_path='./dataset/tiny-imagenet-200',
+output_dir='./output_dir',
+log_dir='./output_dir',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+use_enc_repre=False,
+distributed=False)
+[03:13:55.830007] [03:13:55.830607] [03:13:55.830859] [03:13:55.832041] [03:13:55.832326] [03:13:55.832628] [03:13:55.832972] [03:13:55.833240] [03:13:55.833489] [03:13:55.833756]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 245, in <module>
+    main(args)
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 131, in main
+    dataset_train = datasets.ImageFolder(os.path.join(args.data_path, 'train'), transform=transform_train)
+  File "/usr/local/lib/python3.10/dist-packages/torchvision/datasets/folder.py", line 309, in __init__
+    super().__init__(
+  File "/usr/local/lib/python3.10/dist-packages/torchvision/datasets/folder.py", line 145, in __init__
+    samples = self.make_dataset(self.root, class_to_idx, extensions, is_valid_file)
+  File "/usr/local/lib/python3.10/dist-packages/torchvision/datasets/folder.py", line 189, in make_dataset
+    return make_dataset(directory, class_to_idx, extensions=extensions, is_valid_file=is_valid_file)
+  File "/usr/local/lib/python3.10/dist-packages/torchvision/datasets/folder.py", line 87, in make_dataset
+    for root, _, fnames in sorted(os.walk(target_dir, followlinks=True)):
+  File "/usr/lib/python3.10/os.py", line 419, in _walk
+    yield from _walk(new_path, topdown, onerror, followlinks)
+  File "/usr/lib/python3.10/os.py", line 358, in _walk
+    scandir_it = scandir(top)
+KeyboardInterrupt

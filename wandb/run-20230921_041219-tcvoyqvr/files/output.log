@@ -1,0 +1,180 @@
+Not using distributed mode
+[04:12:22.373047] job dir: /content/drive/MyDrive/ITML/mae-rankme/mae
+[04:12:22.373449] Namespace(batch_size=64,
+epochs=10,
+accum_iter=1,
+model='mae_vit_large_patch16',
+input_size=224,
+mask_ratio=0.75,
+norm_pix_loss=False,
+weight_decay=0.05,
+lr=None,
+blr=0.001,
+min_lr=0.0,
+warmup_epochs=40,
+data_path='./dataset/tiny-imagenet-200',
+output_dir='./output_dir',
+log_dir='./output_dir',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+use_enc_repre=False,
+distributed=False)
+[04:21:21.359340] Dataset ImageFolder
+    Number of datapoints: 100000
+    Root location: ./dataset/tiny-imagenet-200/train
+    StandardTransform
+Transform: Compose(
+               RandomResizedCrop(size=(224, 224), scale=(0.2, 1.0), ratio=(0.75, 1.3333), interpolation=bicubic, antialias=warn)
+               RandomHorizontalFlip(p=0.5)
+               ToTensor()
+               Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+           )
+[04:21:21.360529] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x781d5ef77a90>
+/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py:560: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+[04:21:26.734550] Model = MaskedAutoencoderViT(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(3, 1024, kernel_size=(16, 16), stride=(16, 16))
+    (norm): Identity()
+  )
+  (blocks): ModuleList(
+    (0-23): 24 x Block(
+      (norm1): LayerNorm((1024,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=1024, out_features=3072, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=1024, out_features=1024, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((1024,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (norm): LayerNorm((1024,), eps=1e-06, elementwise_affine=True)
+  (decoder_embed): Linear(in_features=1024, out_features=512, bias=True)
+  (decoder_blocks): ModuleList(
+    (0-7): 8 x Block(
+      (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (attn): Attention(
+        (qkv): Linear(in_features=512, out_features=1536, bias=True)
+        (attn_drop): Dropout(p=0.0, inplace=False)
+        (proj): Linear(in_features=512, out_features=512, bias=True)
+        (proj_drop): Dropout(p=0.0, inplace=False)
+      )
+      (drop_path): Identity()
+      (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (mlp): Mlp(
+        (fc1): Linear(in_features=512, out_features=2048, bias=True)
+        (act): GELU(approximate='none')
+        (fc2): Linear(in_features=2048, out_features=512, bias=True)
+        (drop): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (decoder_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+  (decoder_pred): Linear(in_features=512, out_features=768, bias=True)
+)
+[04:21:26.734987] base lr: 1.00e-03
+[04:21:26.735219] actual lr: 2.50e-04
+[04:21:26.735428] accumulate grad iterations: 1
+[04:21:26.735678] effective batch size: 64
+[04:21:26.737834] AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.00025
+    maximize: False
+    weight_decay: 0.0
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.00025
+    maximize: False
+    weight_decay: 0.05
+)
+[04:21:26.738249] Start training for 10 epochs
+[04:21:26.740273] log_dir: ./output_dir
+[04:21:49.344295] Epoch: [0]  [   0/1562]  eta: 9:48:21  lr: 0.000000  loss: 2.1670 (2.1670)  time: 22.6004  data: 19.2057  max mem: 9065
+[04:22:22.054645] Epoch: [0]  [  20/1562]  eta: 1:07:41  lr: 0.000000  loss: 2.0711 (2.1020)  time: 1.6354  data: 0.7949  max mem: 11599
+[04:22:55.952558] Epoch: [0]  [  40/1562]  eta: 0:55:11  lr: 0.000000  loss: 2.0780 (2.0899)  time: 1.6948  data: 0.8465  max mem: 11599
+[04:23:28.907684] Epoch: [0]  [  60/1562]  eta: 0:50:07  lr: 0.000000  loss: 2.0106 (2.0644)  time: 1.6476  data: 0.7864  max mem: 11599
+[04:24:02.382773] Epoch: [0]  [  80/1562]  eta: 0:47:27  lr: 0.000000  loss: 1.9199 (2.0308)  time: 1.6736  data: 0.8044  max mem: 11599
+[04:24:35.183797] Epoch: [0]  [ 100/1562]  eta: 0:45:27  lr: 0.000000  loss: 1.8465 (1.9930)  time: 1.6400  data: 0.7579  max mem: 11599
+[04:25:08.796188] Epoch: [0]  [ 120/1562]  eta: 0:44:06  lr: 0.000000  loss: 1.7637 (1.9531)  time: 1.6805  data: 0.7860  max mem: 11599
+[04:25:43.305415] Epoch: [0]  [ 140/1562]  eta: 0:43:07  lr: 0.000001  loss: 1.6297 (1.9102)  time: 1.7254  data: 0.8134  max mem: 11599
+[04:26:18.740934] Epoch: [0]  [ 160/1562]  eta: 0:42:22  lr: 0.000001  loss: 1.5718 (1.8694)  time: 1.7717  data: 0.8583  max mem: 11599
+[04:26:53.029411] Epoch: [0]  [ 180/1562]  eta: 0:41:31  lr: 0.000001  loss: 1.5286 (1.8312)  time: 1.7143  data: 0.7927  max mem: 11599
+[04:27:27.577045] Epoch: [0]  [ 200/1562]  eta: 0:40:44  lr: 0.000001  loss: 1.5083 (1.7980)  time: 1.7273  data: 0.7971  max mem: 11599
+[04:28:04.825143] Epoch: [0]  [ 220/1562]  eta: 0:40:17  lr: 0.000001  loss: 1.4353 (1.7657)  time: 1.8622  data: 0.9255  max mem: 11599
+[04:28:39.042473] Epoch: [0]  [ 240/1562]  eta: 0:39:31  lr: 0.000001  loss: 1.4135 (1.7373)  time: 1.7107  data: 0.7765  max mem: 11599
+[04:29:12.762601] Epoch: [0]  [ 260/1562]  eta: 0:38:44  lr: 0.000001  loss: 1.3776 (1.7094)  time: 1.6858  data: 0.7486  max mem: 11599
+[04:29:46.899761] Epoch: [0]  [ 280/1562]  eta: 0:38:01  lr: 0.000001  loss: 1.3354 (1.6833)  time: 1.7067  data: 0.7707  max mem: 11599
+[04:30:24.116800] Epoch: [0]  [ 300/1562]  eta: 0:37:32  lr: 0.000001  loss: 1.2857 (1.6571)  time: 1.8606  data: 0.9255  max mem: 11599
+[04:30:56.717232] Epoch: [0]  [ 320/1562]  eta: 0:36:45  lr: 0.000001  loss: 1.2900 (1.6343)  time: 1.6299  data: 0.6866  max mem: 11599
+[04:31:30.771942] Epoch: [0]  [ 340/1562]  eta: 0:36:04  lr: 0.000001  loss: 1.2485 (1.6125)  time: 1.7026  data: 0.7632  max mem: 11599
+[04:32:04.860799] Epoch: [0]  [ 360/1562]  eta: 0:35:24  lr: 0.000001  loss: 1.2488 (1.5918)  time: 1.7043  data: 0.7585  max mem: 11599
+[04:32:39.216890] Epoch: [0]  [ 380/1562]  eta: 0:34:46  lr: 0.000002  loss: 1.2257 (1.5730)  time: 1.7177  data: 0.7743  max mem: 11599
+[04:33:12.743991] Epoch: [0]  [ 400/1562]  eta: 0:34:05  lr: 0.000002  loss: 1.2270 (1.5555)  time: 1.6762  data: 0.7267  max mem: 11599
+[04:33:47.412263] Epoch: [0]  [ 420/1562]  eta: 0:33:28  lr: 0.000002  loss: 1.2040 (1.5386)  time: 1.7333  data: 0.7938  max mem: 11599
+[04:34:21.970760] Epoch: [0]  [ 440/1562]  eta: 0:32:52  lr: 0.000002  loss: 1.1821 (1.5229)  time: 1.7278  data: 0.7791  max mem: 11599
+[04:34:56.113853] Epoch: [0]  [ 460/1562]  eta: 0:32:14  lr: 0.000002  loss: 1.1509 (1.5065)  time: 1.7069  data: 0.7662  max mem: 11599
+[04:35:29.036746] Epoch: [0]  [ 480/1562]  eta: 0:31:34  lr: 0.000002  loss: 1.1774 (1.4928)  time: 1.6460  data: 0.7029  max mem: 11599
+[04:36:03.152236] Epoch: [0]  [ 500/1562]  eta: 0:30:57  lr: 0.000002  loss: 1.1397 (1.4787)  time: 1.7056  data: 0.7585  max mem: 11599
+[04:36:16.441426] [04:36:16.442087] [04:36:16.442531] [04:36:16.442937] [04:36:16.443370] [04:36:16.443991] [04:36:16.444331] [04:36:16.444624] [04:36:16.444934]
+Exception ignored in: <function _MultiProcessingDataLoaderIter.__del__ at 0x781dc5c400d0>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1478, in __del__
+    self._shutdown_workers()
+  File "/usr/local/lib/python3.10/dist-packages/torch/utils/data/dataloader.py", line 1423, in _shutdown_workers
+    self._worker_result_queue.put((None, None))
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 94, in put
+    self._start_thread()
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 177, in _start_thread
+    self._thread.start()
+  File "/usr/lib/python3.10/threading.py", line 940, in start
+    self._started.wait()
+  File "/usr/lib/python3.10/threading.py", line 607, in wait
+    signaled = self._cond.wait(timeout)
+  File "/usr/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt:
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 245, in <module>
+    main(args)
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py", line 195, in main
+    train_stats = train_one_epoch(
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/engine_pretrain.py", line 90, in train_one_epoch
+    loss_scaler(loss, optimizer, parameters=model.parameters(),
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/util/misc.py", line 269, in __call__
+    norm = get_grad_norm_(parameters)
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/util/misc.py", line 294, in get_grad_norm_
+    total_norm = torch.norm(torch.stack([torch.norm(p.grad.detach(), norm_type).to(device) for p in parameters]), norm_type)
+  File "/content/drive/MyDrive/ITML/mae-rankme/mae/util/misc.py", line 294, in <listcomp>
+    total_norm = torch.norm(torch.stack([torch.norm(p.grad.detach(), norm_type).to(device) for p in parameters]), norm_type)
+  File "/usr/local/lib/python3.10/dist-packages/torch/functional.py", line 1517, in norm
+    return torch.linalg.vector_norm(input, _p, _dim, keepdim, dtype=dtype)
+KeyboardInterrupt

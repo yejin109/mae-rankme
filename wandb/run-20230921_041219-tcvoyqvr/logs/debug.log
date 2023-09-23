@@ -1,0 +1,29 @@
+2023-09-21 04:12:19,121 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Current SDK version is 0.15.10
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Configure stats pid to 1055
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Loading settings from /root/.config/wandb/settings
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Loading settings from /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/settings
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-09-21 04:12:19,122 INFO    MainThread:1055 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main_pretrain.py', 'program': '/content/drive/MyDrive/ITML/mae-rankme/mae/main_pretrain.py'}
+2023-09-21 04:12:19,123 INFO    MainThread:1055 [wandb_init.py:_log_setup():524] Logging user logs to /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/run-20230921_041219-tcvoyqvr/logs/debug.log
+2023-09-21 04:12:19,123 INFO    MainThread:1055 [wandb_init.py:_log_setup():525] Logging internal logs to /content/drive/MyDrive/ITML/mae-rankme/mae/wandb/run-20230921_041219-tcvoyqvr/logs/debug-internal.log
+2023-09-21 04:12:19,124 INFO    MainThread:1055 [wandb_init.py:init():564] calling init triggers
+2023-09-21 04:12:19,124 INFO    MainThread:1055 [wandb_init.py:init():571] wandb.init called with sweep_config: {}
+config: {}
+2023-09-21 04:12:19,124 INFO    MainThread:1055 [wandb_init.py:init():614] starting backend
+2023-09-21 04:12:19,124 INFO    MainThread:1055 [wandb_init.py:init():618] setting up manager
+2023-09-21 04:12:19,129 INFO    MainThread:1055 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-09-21 04:12:19,131 INFO    MainThread:1055 [wandb_init.py:init():624] backend started and connected
+2023-09-21 04:12:19,143 INFO    MainThread:1055 [wandb_init.py:init():715] updated telemetry
+2023-09-21 04:12:21,743 INFO    MainThread:1055 [wandb_init.py:init():748] communicating run to backend with 90.0 second timeout
+2023-09-21 04:12:22,023 INFO    MainThread:1055 [wandb_run.py:_on_init():2220] communicating current version
+2023-09-21 04:12:22,248 INFO    MainThread:1055 [wandb_run.py:_on_init():2229] got version response 
+2023-09-21 04:12:22,249 INFO    MainThread:1055 [wandb_init.py:init():799] starting run threads in backend
+2023-09-21 04:12:22,360 INFO    MainThread:1055 [wandb_run.py:_console_start():2199] atexit reg
+2023-09-21 04:12:22,361 INFO    MainThread:1055 [wandb_run.py:_redirect():2054] redirect: wrap_raw
+2023-09-21 04:12:22,365 INFO    MainThread:1055 [wandb_run.py:_redirect():2119] Wrapping output streams.
+2023-09-21 04:12:22,366 INFO    MainThread:1055 [wandb_run.py:_redirect():2144] Redirects installed.
+2023-09-21 04:12:22,369 INFO    MainThread:1055 [wandb_init.py:init():840] run started, returning control to user process
+2023-09-21 04:12:22,370 INFO    MainThread:1055 [wandb_run.py:_config_callback():1324] config_cb None None {'batch_size': 64, 'epochs': 10, 'accum_iter': 1, 'model': 'mae_vit_large_patch16', 'input_size': 224, 'mask_ratio': 0.75, 'norm_pix_loss': False, 'weight_decay': 0.05, 'lr': None, 'blr': 0.001, 'min_lr': 0.0, 'warmup_epochs': 40, 'data_path': './dataset/tiny-imagenet-200', 'output_dir': './output_dir', 'log_dir': './output_dir', 'device': 'cuda', 'seed': 0, 'resume': '', 'start_epoch': 0, 'num_workers': 10, 'pin_mem': True, 'world_size': 1, 'local_rank': -1, 'dist_on_itp': False, 'dist_url': 'env://', 'use_enc_repre': False}
+2023-09-21 04:21:26,728 INFO    MainThread:1055 [wandb_watch.py:watch():51] Watching
+2023-09-21 04:36:22,630 WARNING MsgRouterThr:1055 [router.py:message_loop():77] message_loop has been closed
