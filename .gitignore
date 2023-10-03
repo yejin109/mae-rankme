@@ -1,0 +1,4 @@
+tiny-imagenet-200-online.zip
+tiny-imagenet-200/*
+util/__pycache__/*
+.idea/*

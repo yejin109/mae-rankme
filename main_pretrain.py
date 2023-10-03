@@ -8,7 +8,7 @@
 # DeiT: https://github.com/facebookresearch/deit
 # BEiT: https://github.com/microsoft/unilm/tree/master/beit
 # --------------------------------------------------------
-import wandb
+# import wandb
 import argparse
 import datetime
 import json
@@ -104,6 +104,7 @@ def get_args_parser():
 
     # Added
     parser.add_argument('--use_enc_repre', default=False, required=False, action=argparse.BooleanOptionalAction)
+    parser.add_argument('--split', default=0.1, required=False, type=float)
     return parser
 
 
@@ -129,7 +130,14 @@ def main(args):
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
     dataset_train = datasets.ImageFolder(os.path.join(args.data_path, 'train'), transform=transform_train)
-    print(dataset_train)
+
+    num_train = len(dataset_train)
+    indices = list(range(num_train))
+    np.random.shuffle(indices)
+    split = int(np.floor(args.split * num_train))
+    train_idx, valid_idx = indices[split:], indices[:split]
+    dataset_val = torch.utils.data.Subset(dataset_train, valid_idx) 
+    dataset_train = torch.utils.data.Subset(dataset_train, train_idx) 
 
     if True:  # args.distributed:
         num_tasks = misc.get_world_size()
@@ -137,9 +145,13 @@ def main(args):
         sampler_train = torch.utils.data.DistributedSampler(
             dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True
         )
+        sampler_val = torch.utils.data.DistributedSampler(
+            dataset_val, num_replicas=num_tasks, rank=global_rank, shuffle=True
+        )
         print("Sampler_train = %s" % str(sampler_train))
     else:
         sampler_train = torch.utils.data.RandomSampler(dataset_train)
+        sampler_val = torch.utils.data.RandomSampler(dataset_val)
 
     if global_rank == 0 and args.log_dir is not None:
         os.makedirs(args.log_dir, exist_ok=True)
@@ -154,12 +166,19 @@ def main(args):
         pin_memory=args.pin_mem,
         drop_last=True,
     )
+
+    data_loader_val = torch.utils.data.DataLoader(
+        dataset_val, sampler=sampler_val,
+        batch_size=args.batch_size,
+        num_workers=args.num_workers,
+        pin_memory=args.pin_mem,
+        drop_last=True,
+    )
     
     # define the model
     model = models_mae.__dict__[args.model](norm_pix_loss=args.norm_pix_loss)
 
     model.to(device)
-    wandb.watch(model)
     model_without_ddp = model
     print("Model = %s" % str(model_without_ddp))
 
@@ -204,11 +223,11 @@ def main(args):
             loss_scaler=loss_scaler, epoch=epoch)
         
         rankme_enc = eval_rankme(
-            model, data_loader_train, device, 
+            model, data_loader_val, device, 
             args=args, use_enc_repre=True
         )
         rankme_dec = eval_rankme(
-            model, data_loader_train, device, 
+            model, data_loader_val, device, 
             args=args, use_enc_repre=False
         )
         
@@ -216,8 +235,7 @@ def main(args):
                         'epoch': epoch,}
         log_stats[f'eval_rankmeEnc'] = rankme_enc
         log_stats[f'eval_rankmeDec'] = rankme_dec
-        run.log({f'train/{k}': v for k, v in train_stats.items()})
-        run.log({'eval/rankme_Encoder': rankme_enc, 'eval/rankme_Decoder' : rankme_dec})
+
         if args.output_dir and misc.is_main_process():
             if log_writer is not None:
                 log_writer.flush()
@@ -235,11 +253,4 @@ if __name__ == '__main__':
     if args.output_dir:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    os.environ["WANDB_API_KEY"] = "5bb26e3124589bc9e7a4d4aa19bd3ea2199e9d14"
-    run = wandb.init(
-      project="MAE-v1", reinit=True
-    )
-
-    run.config.update(args)
-    run.name = '-'.join(['const', str(args.mask_ratio)])
     main(args)
